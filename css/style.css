@@ -1,0 +1,525 @@
+html {
+  height: 100%;
+}
+body {
+  height: 100%;
+  margin: 0px;
+  padding: 0px;
+  overflow-x: hidden;
+}
+img {
+  max-width: 100%;
+}
+/*百度地图logo*/
+.BMap_cpyCtrl {
+  display: none;
+}
+.anchorBL {
+  display: none;
+}
+/*地图控件*/
+.map_bar img {
+  position: relative;
+  width: 100%;
+  height: auto;
+}
+.zoom_in {
+  width: 4%;
+  position: absolute;
+  bottom: 7%;
+  right: 7%;
+  z-index: 10;
+}
+.zoom_out {
+  width: 4%;
+  position: absolute;
+  bottom: 7%;
+  right: 12%;
+  z-index: 10;
+}
+.search {
+  width: auto;
+  position: fixed;
+  top: 3%;
+  right: 3%;
+  overflow: hidden;
+}
+.search #searchbox {
+  width: 100%;
+  position: relative;
+  font-size: 0;
+}
+.search #searchbox .search_button {
+  pointer-events: auto;
+  background-color: transparent;
+  display: inline-block;
+  vertical-align: middle;
+  width: 65%;
+}
+.search #searchbox .search_button .search-img {
+  width: 100%;
+}
+.search_result_dialog {
+  position: absolute;
+  left: 2%;
+  right: 0;
+  width: 40%;
+  height: 87%;
+  border-radius: 30px;
+  background: rgba(0, 0, 0, 0.6) none repeat scroll 0 0 !important;
+  display: none;
+  top: 5%;
+}
+form {
+  margin-bottom: 5px;
+}
+em {
+  font-style: normal;
+  font-size: 24px;
+  font-weight: bold;
+}
+.search_result_list_dialog {
+  position: relative;
+  height: 100%;
+}
+.shop_img {
+  width: 40px;
+}
+.search_result_hide {
+  position: absolute;
+  left: 99.96%;
+  top: 35%;
+  width: 50px;
+  height: 100px;
+  border-top-right-radius: 15px;
+  border-bottom-right-radius: 15px;
+  text-align: center;
+  background: rgba(0, 0, 0, 0.6) none repeat scroll 0 0 !important;
+}
+.search_result {
+  position: absolute;
+  width: 95.5%;
+  height: 74.6%;
+  left: 2.0%;
+  top: 59px;
+  overflow: auto;
+}
+.search_result li {
+  list-style: none;
+  border-bottom: 1px solid #fff;
+  padding: 3px 0;
+}
+.search_result li:last-child {
+  border-bottom: none;
+}
+.search_result li button {
+  text-align: left;
+  font-family: SimHei;
+  font-size: 20px;
+  color: #ffffff;
+  background: transparent;
+  border: none;
+  vertical-align: middle;
+  line-height: 20px;
+  pointer-events: none;
+}
+.search_result_text_title {
+  width: 80%;
+  padding: 20px;
+}
+#search_result_main_title {
+  text-align: left;
+  font-family: SimHei;
+  font-size: 22px;
+  color: #ffffff;
+  background: transparent;
+  border: none;
+  vertical-align: middle;
+}
+#search_result_sub_title {
+  text-align: left;
+  font-family: SimHei;
+  font-size: 20px;
+  color: #ffa800;
+  background: transparent;
+  vertical-align: middle;
+  border-color: #ffa800;
+}
+.line_table {
+  width: 100%;
+}
+.search_result_close {
+  position: absolute;
+  width: 22px;
+  height: 22px;
+  top: 3.8%;
+  right: 5%;
+}
+.search_result_next {
+  position: absolute;
+  width: 100%;
+  bottom: 4%;
+  margin: auto;
+  left: 0;
+  right: 0;
+  text-align: center;
+}
+.page_num {
+  font-size: 16px;
+  color: #fff;
+  display: inline-block;
+  vertical-align: middle;
+  width: 18px;
+  height: 18px;
+}
+.presson {
+  color: #000;
+  background: url(../images/yuan.png) no-repeat;
+  background-size: 100% 100%;
+}
+#img_search_result_hide {
+  margin-top: 68%;
+  height: 34px;
+  top: 0;
+  position: absolute;
+  width: 20px;
+  margin-left: 28%;
+  left: 0;
+}
+.search_result_show {
+  /* margin-top: 50px; */
+  height: 100px;
+  top: 40%;
+  position: absolute;
+  width: 76px;
+  left: 0px;
+  display: none;
+}
+.firstScan_main {
+  display: none;
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  z-index: 10020;
+  color: #FFFFFF;
+}
+.searchbox {
+  width: 33.9%;
+  height: auto;
+  position: relative;
+  left: 9.4% !important;
+  top: 6%;
+  border: 3px solid #FFFFFF;
+  border-color: transparent #ffffff transparent #ffffff;
+}
+.searchbox_input {
+  position: relative !important;
+  width: 80.8% !important;
+  height: auto !important;
+  padding-left: 1.8% !important;
+  float: left !important;
+  background-color: transparent !important;
+  border-color: transparent !important;
+  font-family: "Microsoft YaHei" !important;
+  font-size: 20px !important;
+  color: #cecece !important;
+}
+.searchbox_button {
+  position: relative !important;
+  width: 34px !important;
+  height: 34px !important;
+  background-image: url(../images/sousuo-2.png) !important;
+  background-color: transparent;
+  background-repeat: no-repeat;
+  border: 0px solid #FFFFFF !important;
+  left: 10px;
+}
+.black_overlay {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 10010;
+  background: black;
+  opacity: 0.55;
+  filter: alpha(opacity=50);
+}
+.mapnavbar_1 {
+  overflow: hidden;
+  position: fixed;
+  right: 0;
+  top: 17%;
+}
+.mapnavbar_2 {
+  overflow: hidden;
+  position: fixed;
+  right: 0;
+  top: 33%;
+}
+.mapnavbar_3 {
+  overflow: hidden;
+  position: fixed;
+  right: 0;
+  top: 49%;
+}
+.mapnavbar_4 {
+  overflow: hidden;
+  position: fixed;
+  right: 0;
+  top: 65%;
+}
+.navbox {
+  position: relative;
+  background-color: rgba(0, 0, 0, 0.6);
+  padding-left: 20px;
+  border-top-left-radius: 40px;
+  border-bottom-left-radius: 40px;
+  margin: 4px 0px;
+  padding: 4px 0 4px 20px;
+  overflow: hidden;
+}
+.navbox a,
+.navbox ul {
+  display: inline-block;
+  vertical-align: middle;
+}
+.navbox .navbtn {
+  font-size: 17px;
+  color: #fff;
+  text-align: center;
+}
+.navbox .navbtn img {
+  width: 100%;
+}
+.navbox .navclose {
+  max-width: 30px;
+  width: 0;
+  overflow: hidden;
+}
+.navbox .navclose img {
+  width: 100%;
+}
+.navbox .navbase {
+  width: 0;
+  overflow-x: scroll;
+  overflow-y: hidden;
+  display: inline-block;
+  vertical-align: middle;
+  padding-left: 10px;
+}
+.navbox .navbase ul {
+  width: 0;
+  position: relative;
+}
+.navbox .navbase ul li {
+  width: 0;
+  display: inline-block;
+  vertical-align: middle;
+  margin: 0 4px;
+  font-size: 17px;
+  color: #fff;
+  text-align: center;
+}
+.navbox .navbase ul li img {
+  width: 100%;
+}
+.navbox .navbase::-webkit-scrollbar {
+  height: 0px !important;
+}
+#navbar_3 .navbarbase > li {
+  margin: 0 6px;
+}
+.carte_menu {
+  position: fixed;
+  width: 54.2%;
+  height: auto;
+  top: 0%;
+  left: 22.9%;
+  display: none;
+}
+.carte_menu img {
+  position: relative;
+  width: 100%;
+  height: auto;
+}
+.carte_detail_dialog {
+  margin: 0 15.9%;
+  position: absolute;
+  left: 0;
+  width: 68.2%;
+  height: 83.1%;
+  background-color: #ffffff;
+  filter: alpha(opacity=89);
+  opacity: 0.89;
+  display: block;
+  border-bottom-right-radius: 15px;
+  border-bottom-left-radius: 15px;
+  display: none;
+  top: 0;
+}
+.carte_detail_dialog .main_title {
+  position: absolute;
+  width: 100%;
+  height: auto;
+  top: 5.3%;
+  text-align: center;
+  font-family: SimHei;
+  font-size: 25px;
+  color: #6d4a31;
+}
+.carte_detail_dialog .sub_title {
+  position: absolute;
+  width: 100%;
+  height: auto;
+  top: 12%;
+  text-align: center;
+  font-family: SimHei;
+  font-size: 10px;
+  color: #965a2d;
+}
+.carte_detail_dialog .carte_detail_close {
+  position: absolute;
+  width: 48px !important;
+  height: 48px !important;
+  top: 2%;
+  right: 2%;
+}
+.carte_detail_dialog .carte_detail {
+  position: absolute;
+  width: 88.5%;
+  height: 40.6%;
+  left: 5.9%;
+  top: 16.2%;
+}
+.carte_detail_dialog .carte_detail #carte_detal_table th {
+  border-color: transparent transparent #965a2d transparent;
+  padding: 2.5% 0% 1% 3%;
+}
+.carte_detail_dialog .carte_detail td,
+.carte_detail_dialog .carte_detail th {
+  text-align: left;
+  line-height: 20px;
+  border-top: 1px solid #ddd;
+}
+.carte_detail_dialog .carte_detail thead th {
+  border-top: 0;
+}
+.carte_detail_dialog .carte_detail .bootstrap-table .fixed-table-container {
+  border: 0px;
+}
+.carte_detail_dialog .carte_detail .bootstrap-table .table > thead > tr > th {
+  border-left-style: none !important;
+}
+.carte_detail_dialog .carte_detail td {
+  font-size: 20px;
+  font-family: SimHei;
+  color: #965a2d;
+  border-color: #965a2d transparent transparent transparent;
+}
+.carte_detail_dialog .carte_detail_more {
+  position: absolute;
+  width: 55px !important;
+  height: 55px !important;
+  bottom: 0%;
+  margin: auto;
+  left: 0;
+  right: 0;
+}
+.bootstrap-table .fixed-table-container {
+  border: 0px;
+}
+.bootstrap-table ::-webkit-scrollbar {
+  width: 8px;
+  background-color: #ede2dd8;
+}
+.bootstrap-table ::-webkit-scrollbar-track {
+  -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
+  border-radius: 10px;
+  background-color: #ede2d8;
+}
+.bootstrap-table ::-webkit-scrollbar-thumb {
+  border-radius: 10px;
+  -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
+  background-color: #a08777;
+}
+.info_box {
+  position: fixed;
+  width: 100%;
+  bottom: 0%;
+  display: none;
+  background: url(../images/navbg.png) repeat-x;
+  background-size: 100% 100%;
+  padding: 2% 0;
+}
+.info_box .info_wrap:after {
+  content: '';
+  clear: both;
+  display: block;
+  height: 0;
+  overflow: hidden;
+  visibility: hidden;
+}
+.info_box .info_navigation,
+.info_box .tourist_vedio,
+.info_box .tourist_pic,
+.info_box .info_text,
+.info_box .info_audio {
+  position: relative;
+  float: left;
+  width: 13%;
+  margin: 1% 1% 0 1%;
+}
+.info_box img {
+  position: relative;
+  width: 100%;
+  height: auto;
+}
+.ios_crossscreen {
+  position: absolute;
+  width: 98%;
+  right: 1%;
+  bottom: 0.5%;
+}
+.ios_crossscreen img {
+  width: 100%;
+}
+.ios_crossscreen .ios-inner {
+  width: 100%;
+  position: relative;
+}
+.ios_crossscreen .ios-inner .ios_crossscreen_close {
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 9.3%;
+}
+.ios_crossscreen .ios-inner .ios_crossscreen_close img {
+  width: 100%;
+}
+.andriod_crossscreen {
+  position: fixed;
+  width: 97.33%;
+  height: 48.13%;
+  background-color: transparent;
+  right: 1.33%;
+  bottom: 0%;
+}
+.andriod_crossscreen img {
+  position: relative;
+  width: 100%;
+  height: 100%;
+}
+.andriod_crossscreen_close {
+  position: fixed;
+  top: 51.87%;
+  right: 1.33%;
+  width: 9.59%;
+  height: auto;
+}
+.andriod_crossscreen_close img {
+  position: relative;
+  width: 100%;
+  height: auto;
+}

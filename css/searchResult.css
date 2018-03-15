@@ -1,0 +1,163 @@
+@CHARSET "UTF-8";
+
+.search_result_dialog{
+    position: absolute;
+    left: 2%;
+    right: 0;
+    width: 40%;
+    height: 87%;
+    border-radius: 30px;
+    background: rgba(0,0,0,0.6) none repeat scroll 0 0 !important;
+    display:none;
+    top: 5%;
+}
+form{margin-bottom: 5px;}
+em{font-style: normal;    
+	font-size: 24px;
+    font-weight: bold;}
+.search_result_list_dialog{
+	position: relative;
+	height: 100%;
+}
+.shop_img{
+	width:40px;
+}
+.search_result_hide
+{
+	position: absolute;
+    left: 99.96%;
+    top: 35%;
+    width: 50px;
+    height: 100px;
+    border-top-right-radius: 15px;
+    border-bottom-right-radius: 15px;
+    text-align: center;
+    background: rgba(0,0,0,0.6) none repeat scroll 0 0 !important;
+}
+
+.search_result_title{
+
+}
+
+.search_result{
+	position: absolute;
+	width: 95.5%;
+	height: 74.6%;
+	left: 2.0%;
+	top: 59px;
+	overflow: auto;
+}
+
+ul, menu, dir {
+    display: block;
+    list-style-type: disc;
+    -webkit-margin-before: 1em;
+    -webkit-margin-after: 1em;
+    -webkit-margin-start: 0px;
+    -webkit-margin-end: 0px;
+    -webkit-padding-start: 8px;
+}
+
+.search_result li {
+ list-style: none;
+ border-bottom: 1px solid #fff;
+ padding: 3px 0;
+}
+ 
+ .search_result li:last-child {
+ border-bottom: none;
+ }
+ .search_result li button {
+	text-align:left;
+	font-family:SimHei;
+	font-size:20px;
+	color:#ffffff;
+	background: transparent;
+	border:none;
+	vertical-align:middle;
+	line-height: 20px;
+	pointer-events: none;
+ }
+
+.search_result_text_title{
+	width: 80%;
+	padding: 20px;
+}
+
+#search_result_main_title{
+	text-align:left;
+	font-family:SimHei;
+	font-size:22px;
+	color:#ffffff;
+	background: transparent;
+	border:none;
+	vertical-align:middle;
+}
+
+#search_result_sub_title{
+	text-align:left;
+	font-family:SimHei;
+	font-size:20px;
+	color:#ffa800;
+	background: transparent;
+	vertical-align:middle;
+	border-color:#ffa800;
+}
+
+.line_table{
+	width: 100%;
+}
+
+.search_result_close {
+    position: absolute;
+    width: 22px;
+    height: 22px;
+    top: 3.8%;
+    right: 5%;
+}
+
+.search_result_next {
+    position: absolute;
+    width: 100%;
+    bottom: 4%;
+    margin: auto;
+    left: 0;
+    right: 0;
+    text-align: center;
+}
+.page_num{
+	font-size: 16px;
+	color:#fff;
+	display:inline-block;
+	vertical-align:middle;
+	width: 18px;
+	height: 18px;
+}
+
+.presson{
+	color:#000;
+	background:url(../images/searchResultMenu/yuan.png) no-repeat;
+	background-size:100% 100%;
+}
+
+
+
+#img_search_result_hide {
+    margin-top: 68%;
+    height: 34px;
+    top: 0;
+    position: absolute;
+    width: 20px;
+    margin-left: 28%;
+    left: 0;
+}
+
+.search_result_show{
+	/* margin-top: 50px; */
+	height: 100px;
+	top: 40%;
+	position: absolute;
+	width: 76px;
+	left: 0px;
+	display: none;
+}

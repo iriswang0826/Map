@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="chrome=1">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+<meta http-equiv="cache-control" content="max-age=0" />
+<meta http-equiv="cache-control" content="no-cache" />
+<meta http-equiv="pragma" content="no-cache" />
+<title></title>
+<script src="http://code.jquery.com/jquery-2.1.4.min.js"></script>
+<script src="../js/jssor.slider.min.js"></script>
+<!-- <script src="../js/swiper.jquery.min.js"></script> -->
+<script src="../js/common.js"></script>
+<script src="../js/Getdata.class.js"></script>
+<!-- <link rel="stylesheet" href="../css/swiper.min.css"> -->
+<link rel="stylesheet" href="../css/iframe.css">
+<link rel="stylesheet" href="../css/guide.css">
+</head>
+<body>
+<div class="content">
+    <div class="top-buffer"></div>
+    <p class="page-title"></p>
+    <div class="inner">
+        <img class="bg" src="../images/bg.png">
+        <div class="atlas">
+            <div id="slider1_container" style="position: relative; top: 0px; left: 0px; width: 744px; height: 498px;">
+                <!-- Slides Container -->
+                <div id="atlas-slider" u="slides" style="cursor: move; position: absolute; overflow: hidden; left: 0px; top: 0px; width: 744px; height: 498px;">
+                </div>
+            </div>
+        </div>
+        <p class="tag"></p>
+        <div>
+            <p class="address"></p>
+            <a class="tell" href=""></a>
+            <div class="description"></div>
+        </div>
+    </div>
+    <a class="close"><img src="../images/close_btn.png"/></a>
+</div>
+<script type="text/javascript">
+function setUI(){
+    var wH = $(window).height();
+    $(".content").css({"height":wH});
+    var bodyWidth = document.body.clientWidth;
+    var bodyHeigth = document.body.clientHeight;
+    // var type = getURLParameter('type');
+    if(bodyWidth > bodyHeigth){
+        $(".bg").css({"height":"auto"});
+        $(".top-buffer").css({"top":"3%"});
+        $(".page-title").css({"padding-left":"2%","margin-left":"7%","font-size":"26px","background-size":"1% 100%","height":"auto","line-height":"auto"});
+        $(".inner").css({"width": "94%","margin": "0 3%"});
+        $(".close").css({"top": "3%","right": "2%","width": "4%"});
+        $(".atlas").css({"top":"10%"});
+        $(".tag").css({"bottom":"13%","left":"6%","background-size":"15px 15px","padding-left":"4%"});
+        $(".address").css({"top":"8%","left":"50%","background-size":"15px 15px","padding-left": "4%"});
+        $(".tell").css({"top":"19%","left":"50%","background-size":"15px 15px","padding-left": "4%"});
+        if(type == "scenic"){
+            $(".description").css({"top":"10%","left":"50%","width":"44%","height":"70%"}); 
+        }else{
+            $(".description").css({"top":"30%","left":"50%","width":"44%","height":"50%"}); 
+        }
+         
+    }else{
+        $(".bg").css({"height":wH - 64});
+        $(".top-buffer").css({"top":"4%"});
+        $(".page-title").css({"padding-left":"4%","margin-left":"10%","font-size":"24px","background-size":"6px 100%","height":"24px","line-height":"24px"});
+        $(".inner").css({"width": "91%","margin": "-2% 5% 0 4%"});
+        $(".close").css({"top": "1%","right": "2%","width": "6%"});
+        $(".atlas").css({"top":"7%"});
+        $(".tag").css({"bottom":"50%","left":"6%","background-size":"15px 15px","padding-left":"8%"});
+        $(".address").css({"top":"52%","left":"6%","background-size":"15px 15px","padding-left": "8%"});
+        $(".tell").css({"top":"58%","left":"6%","background-size":"15px 15px","padding-left": "8%"});
+        if(type == "scenic"){
+            $(".description").css({"top":"54%","left":"6%","width":"86%","height":"35%"});
+        }else{
+            $(".description").css({"top":"64%","left":"6%","width":"86%","height":"24%"});
+        }
+         
+    }
+}
+$(window).bind("load", setUI);
+$(window).bind("resize", setUI);
+$(window).bind("orientationchange", setUI);
+var item_data;
+var type;
+function setData() {
+    var posX = getURLParameter('posX');
+    var posY = getURLParameter('posY');
+    var curZoom = getURLParameter('curZoom');
+    // var url = apiUrl + "api/infodata";
+    var data=new Getdata();
+    data.click(posX,posY,curZoom,function (d) {
+        if(d.code == 0){
+            var result = d.data;
+            type = result.type;
+            var rlt = result.introduce;
+            if(type == "scenic"){
+                $(".address").hide();
+                $(".tell").hide();
+            }
+            //set page title
+            $(".page-title").html(result.name);
+            //set pic
+            if (rlt.img && rlt.img.length > 0) {
+                for (var i = 0; i < rlt.img.length; i++) {
+                    if(rlt.img[i] == ' ' || rlt.img[i] == ''){
+                    }else {
+                        $("#atlas-slider").append('<div><img u=\"image\" src=\"' + rlt.img[i] + '\" /></div></div>');                        
+                    }
+                }
+                
+                $("#atlas-slider").append(' <div u="navigator" class="jssorb21" style="position: absolute; bottom: 16px;"><div u="prototype" style="positon: absolute; width: 19px; height: 19px; text-align:center; line-height:19px; color:white; font-size:12px;"></div></div>');
+
+                var options = {
+                    $AutoPlay: true,
+                    $BulletNavigatorOptions: {
+                        $Class: $JssorBulletNavigator$,
+                        $ChanceToShow: 2,
+                        $AutoCenter: 1,
+                        $Steps: 1,
+                        $Lanes: 1,
+                        $SpacingX: 8,
+                        $SpacingY: 8,
+                        $Orientation: 1,
+                        $Scale: true
+                    }
+                };
+                var jssor_slider1 = new $JssorSlider$('slider1_container', options);
+
+                function ScaleSlider() {
+                    var bodyWidth = document.body.clientWidth;
+                    var bodyHeigth = document.body.clientHeight;
+                    if(bodyWidth > bodyHeigth){
+                        bodyWidth = document.body.clientWidth * 0.36;
+                    }else{
+                        bodyWidth = document.body.clientWidth *0.8;
+                    }
+                    
+                    if (bodyWidth)
+                        jssor_slider1.$ScaleWidth(Math.min(bodyWidth, 600));
+                    else
+                        window.setTimeout(ScaleSlider, 30);
+                }
+                ScaleSlider();
+                $(window).bind("load", ScaleSlider);
+                $(window).bind("resize", ScaleSlider);
+                $(window).bind("orientationchange", ScaleSlider);
+            }
+            //set tag
+            // $(".tag").html(item_data.tag);
+            //set address
+            // $(".address").html(item_data.address);
+            //set tell
+            // $(".tell").attr({"href":"tel:"+item_data.tell}).html(item_data.tell);
+            //set description
+            $(".description").append('<p>'+rlt.text+'</p>');
+        }else {
+            alert('获取失败'+d.msg);
+        }
+    })     
+}
+$(document).ready(function(){
+    setData();
+    setUI();
+    $(".close").click(function(){
+       window.parent.closeDetailInfo(); 
+    });
+}); 
+</script>
+</body>
+</html>

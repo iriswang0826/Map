@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="chrome=1">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"  media="screen"/>
+<meta http-equiv="cache-control" content="max-age=0" />
+<meta http-equiv="cache-control" content="no-cache" />
+<meta http-equiv="expires" content="0" />
+<meta http-equiv="pragma" content="no-cache" />
+<title></title>
+<script src="http://code.jquery.com/jquery-2.1.4.min.js"></script>
+<script src="../js/jssor.slider.min.js"></script>
+<script type="text/javascript" src="../js/common.js"></script>
+<link rel="stylesheet" href="../css/iframe.css">
+</head>
+<body>
+<div class="content">
+    <div class="shu_div">
+        <div id="slider_container" style="position: relative; top: 0px; left: 0;width: 378px; height: 596px;">
+            <span u="arrowleft" class="jssora02l" style="position:absolute;left:-70px;width:35px;height:35px;background:url(../images/arrow-left.png) no-repeat;background-size:100% 100%;background-position:center;"></span>
+            <span u="arrowright" class="jssora02r" style="position:absolute;right:-70px;width:35px;height:35px;background:url(../images/arrow-right.png) no-repeat;background-size:100% 100%;background-position:center;"></span>
+        </div>
+    </div>
+    <a class="close"><img src="../images/close_btn.png" /></a>
+</div>
+<script type="text/javascript">
+function setData() {
+    var name = getURLParameter("name");
+    var url = apiUrl + "api/infodata";
+    $.get(url,function(d){
+        var tempData;
+        for (var i = 0; i < d.info.length; i++) {
+            if (d.info[i].name == name) {
+                tempData = d.info[i];
+                break;
+            }
+        }
+        var t_html = '';
+        for (var i = 0; i < tempData.atlas.length; i++) {
+            t_html += '<div>\<img u="image" onclick="showImg(' + i + ')"src="' + tempData.atlas[i] + '"/>\</div>';
+            atlasArr.push(tempData.atlas[i]);
+        }
+        $("#slider_container").append('<div u="slides" style="cursor: move; position: absolute; left: 0px; top: 0px; width: 378px; height: 596px; ">' + t_html + '</div>');
+        var options = {
+            $AutoPlay: false,
+            $ArrowKeyNavigation: true,
+            $ArrowNavigatorOptions: {
+                $Class: $JssorArrowNavigator$,
+                $ChanceToShow: 2,
+                $AutoCenter: 2,
+                $Steps: 1,
+                $Scale: false
+             },
+        };
+        var jssor_slider1 = new $JssorSlider$('slider_container', options);
+
+        function ScaleSlider() {
+            var bodyWidth = $(window).width();
+            var bodyHeigth = $(window).height();
+            $(".content").width(bodyWidth);
+            $(".content").height(bodyHeigth);
+            if (bodyWidth > bodyHeigth) {
+                $(".shu_div").width(bodyWidth * 0.26 + "px");
+                $(".shu_div").css("margin-left", bodyWidth * 0.37 + "px");
+                $(".close").css({ "top": "5%", "right": "4%", "width": "4%" });
+                bodyWidth = $(window).width() * 0.26;
+            } else {
+                $(".shu_div").width(bodyWidth * 0.54 + "px");
+                $(".shu_div").css("margin-left", bodyWidth * 0.23 + "px");
+                $(".close").css({ "top": "3%", "right": "4%", "width": "6%" });
+                bodyWidth = $(window).width() * 0.54;
+            }
+
+            if (bodyWidth)
+                jssor_slider1.$ScaleWidth(Math.min(bodyWidth, 600));
+            else
+                window.setTimeout(ScaleSlider, 30);
+
+            $("#slider_container").css("top", (bodyHeigth - jssor_slider1.$ScaleHeight()) / 2 + "px");
+            $(".jssora02l").css({ "position": "absolute", "left": "-70px", "width": "35px", "height": "35px", "background": "url(../images/arrow-left.png) no-repeat", "background-size": "100% 100%", "background-position": "center" });
+            $(".jssora02r").css({ "position": "absolute", "right": "-70px", "width": "35px", "height": "35px", "background": "url(../images/arrow-right.png) no-repeat", "background-size": "100% 100%", "background-position": "center" });
+        }
+        ScaleSlider();
+        $(window).bind("load", ScaleSlider);
+        $(window).bind("resize", ScaleSlider);
+        $(window).bind("orientationchange", ScaleSlider);
+    })
+}
+
+var atlasArr = new Array();
+function imagePreview(curSrc, srcList) {
+    if (!curSrc || !srcList || srcList.length == 0) {
+         return;
+    }
+    var t1 = encodeURI(curSrc);
+    var t2 = new Array();
+    $.each(srcList, function (i, v) {
+        t2.push(encodeURI(v));
+    });
+    WeixinJSBridge.invoke('imagePreview', {
+        'current': t1,
+        'urls': t2
+    });
+}
+
+function showImg(i) {
+     imagePreview(atlasArr[i], atlasArr);
+}
+
+$(document).ready(function () {
+    setData();
+    $(".close").click(function(){
+      window.parent.closeDetailInfo(); 
+    });
+});
+
+</script>
+</body>
+</html>

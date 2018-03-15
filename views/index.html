@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title></title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="viewport"content="user-scalable=no" />
+<link rel="stylesheet" href="../js/bootstrap-table/bootstrap-table.css">
+<link rel="stylesheet" href="../css/searchResult.css" />
+<link rel="stylesheet" href="../css/reset.css">
+<link rel="stylesheet" href="../css/style.css">
+<script src="http://code.jquery.com/jquery-2.1.4.min.js"></script>
+<script src="../js/bootstrap-table/bootstrap-table.js"></script>
+<script type="text/javascript" src="http://api.map.baidu.com/api?v=2.0&ak=Fwch1bspGGyKUqwBMVH6lafdoY1lTKqT"></script>
+<script src="../js/Getdata.class.js"></script>
+</head>
+<body>
+<div id="map" style="width:100%;height:100%;position:absolute;"></div>
+<!-- 放大缩小控件 -->
+<div class="map_bar">
+	<div class="zoom_in" id="zoom_in"><a><img src="../images/jian_icon.png"></a></div>
+	<div class="zoom_out" id="zoom_out"><a><img src="../images/jia_icon.png"></a></div>
+</div>
+<!-- 搜索 -->
+<div class="search" id="search_bar" > 
+    <div id="searchbox">
+        <div class="search_button" href="javascript:void(0);" onclick="openSearchbar();return false; ">
+        <img class="search-img" src="../images/sousuo_ditu.png">
+        </div>
+    </div>
+</div>
+<!-- 侧边按钮 -->
+<div class="mapnavbar_1">
+    <div class="navbox" id="navbar_1">
+        <a class="navbtn" data-type="shops">
+            <img src="../images/meishi_icon.png"/>
+            <div>美食</div>
+        </a>
+        <a class="navclose"><img src="../images/nav_close.png"/></a>
+        <div class="navbase">
+            <ul class="navbarbase"></ul>
+        </div>
+    </div>
+</div>
+
+<div class="mapnavbar_2">
+    <div class="navbox"  id="navbar_2">
+        <a class="navbtn" data-type="scenic">
+            <img src="../images/jingdian_icon_wdj.png"/>
+            <div>景点</div>
+        </a>
+        <div class="navbase">
+            <ul class="navbarbase"></ul>
+        </div>
+    </div>
+</div>
+
+<!-- <div class="mapnavbar_3">
+    <div class="navbox"  id="navbar_3">
+        <a class="navbtn">
+            <img src="../images/gonglve_icon_wdj.png"/>
+            <div>攻略</div>
+        </a>
+        <a class="navclose"><img  src="../images/nav_close.png"/></a>
+        <div class="navbase">
+            <ul class="navbarbase">
+                <li data-type="play"><img src="../images/haohua_icon_wdj.png"/><div>路线一</div></li>
+                
+            </ul>
+        </div>
+    </div>
+</div> -->
+
+<div class="mapnavbar_3">
+    <div class="navbox" id="navbar_4">
+        <a class="navbtn" data-type="public">
+            <img src="../images/more_icon_wdj.png"/>
+            <div>更多</div>
+        </a>
+        <a class="navclose"><img  src="../images/nav_close.png"/></a>
+        <div class="navbase">
+            <ul class="navbarbase">
+            </ul>
+        </div>
+    </div>
+</div>
+
+<div class="carte_menu">
+    <a><img src="../images/cartemenu.png"></a>
+</div>
+
+<div class="carte_detail_dialog">
+    <div class="carte_detail_title">
+        <div class="main_title">content</div>
+        <!-- <div class="sub_title">subtitle</div> -->
+        <a><img class="carte_detail_close" src="../images/carteclose.png"></a>
+    </div>
+    <div class="carte_detail">
+        <table data-classes="table table-hover" id="carte_detal_table" data-height=231>
+            <thead style="font-family: SimHei !important;font-size: 20px !important;color: #965a2d !important;">
+                <tr>
+                    <th data-field="name">菜名</th>
+                    <th data-field="seasoning">配料</th>
+                    <th data-field="characteristic">特色</th>
+                    <th data-field="price">价格</th>
+                </tr>
+            </thead>
+        </table>
+    </div>
+    <a><img class="carte_detail_more"
+      src="../images/cartemore.png"></a>
+</div>
+<div class="info_box">
+    <div class="info_wrap"></div>
+    
+</div>
+<div id="light_search" class="firstScan_main">
+    <form  class="searchbox">
+        <input type="text" id="searchtext_input" class="searchbox_input"
+        placeholder="请输入您想查找的内容" autofocus />
+        <!--  oninput="OnInput (event)"  />  -->
+        <input type="submit" id="searchsumbit_input" class="searchbox_button" 
+        href="javascript:void(0);" value=""
+        onclick="searchsite();return false;" />
+    </form >
+</div>
+<div id="fade_search" class="black_overlay"></div>
+<!-- 搜索结果 -->
+<div class="search_result_dialog">
+    <div class="search_result_list_dialog">
+        <div class="search_result_title">
+            <form class=search_result_text_title>
+                <button id="search_result_main_title" disabled="disabled">你是否要找:</button>
+                <button id="search_result_sub_title" disabled="disabled">subtitle</button>
+            </form>
+
+            <img class="search_result_close" src="../images/searchResultMenu/carteclose.png">
+        </div>
+        <div class="search_result">
+            <ul id=search_result_list data-role="listview" data-split-icon="delete" style="margin: 0;">
+            </ul>
+        </div>
+        <div class="search_result_next">
+            <div id="btn_prev" class="aaa" style="display: inline-block; vertical-align: middle;">
+                <img src="../images/searchResultMenu/prev.png"  style="vertical-align: middle;">
+                <p style="margin: 0;font-size: 16px; color: #fff; display: inline-block; vertical-align: middle;">上一页</p>
+            </div>
+            <ul id="table_page" style="display: inline-block; vertical-align: middle; margin: 0 20px;">
+            </ul>
+            <div id="btn_next" style="display: inline-block; vertical-align: middle;">
+            <p style="margin: 0;font-size: 16px; color: #fff; display: inline-block; vertical-align: middle;">下一页</p>
+            <img src="../images/searchResultMenu/next.png" style="vertical-align: middle;">
+            </div>
+        </div>
+    </div>
+
+
+    <div class="search_result_hide">
+        <img id="img_search_result_hide" src="../images/searchResultMenu/hide.png">
+    </div>
+</div>
+<img class="search_result_show" src="../images/searchResultMenu/show.png">
+<!-- 横屏提示 -->
+<div id="light_ios_crossscreen" class="firstScan_main">
+    <div class="ios_crossscreen"> 
+        <div class="ios-inner">
+            <img class="crossscreen-ios" src="../images/crossscreen-ios.png">
+            <a class="ios_crossscreen_close" onclick="CloseIosCrossScreenTips()"><img src="../images/guanbi.png"></a>
+        </div>
+    </div>
+</div>
+<div id="fade_ios" class="black_overlay"></div>
+
+<div id="light_andriod_crossscreen" class="firstScan_main">
+    <div class="andriod_crossscreen">   
+        <img class="crossscreen_andriod" src="../images/crossscreen_andriod.png">  
+    </div>
+    <a class="andriod_crossscreen_close" onclick="CloseAndriodCrossScreenTips()"><img src="../images/guanbi.png"></a>
+</div>
+<div id="fade_andriod" class="black_overlay"></div>
+
+<script type="text/javascript" src="../js/map.js"></script>
+<script type="text/javascript" src="../js/win.js"></script>
+<script type="text/javascript" src="../js/common.js"></script>
+<script type="text/javascript" src="../js/searchResult.js"></script>
+</body>
+</html>

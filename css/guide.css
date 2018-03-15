@@ -1,0 +1,17 @@
+.content{width:100%;background-color: rgba(0,0,0,0.8);position: relative;color: #fff;}
+.top-buffer{padding-top: 3%;}
+.page-title{width: 80%; padding-left:2%; margin-left: 7%; font-size: 26px;font-weight: bold;background: url(../images/guide/arrow.png) no-repeat left top;background-size: 1% 100%;}
+.inner{width: 94%;position: relative;margin: 0 3%;}
+.bg{width: 100%;position: relative;}
+.atlas{position: absolute;top: 10%;left: 6%;}
+.tag{position: absolute;bottom: 13%;left: 6%;font-size: 18px;background: url(../images/guide/tag.png) no-repeat left center;background-size: 15px 15px; padding-left: 4%;}
+.address{position: absolute;top: 8%;left: 50%;font-size: 18px;width: 40%;padding-left: 4%;background: url(../images/guide/address.png) no-repeat left center;background-size: 15px 15px;}
+.tell{position: absolute;top: 19%;left: 50%;font-size: 18px;width: 40%;padding-left: 4%;background: url(../images/guide/tell.png) no-repeat left center;background-size: 15px 15px;color: #fff;}
+.description{position: absolute;top: 30%;left: 50%;width: 44%;height: 50%;overflow: scroll;font-size: 17px;text-indent: 1em;line-height: 19px;line-height: 25px;}
+.close{position: absolute;top: 3%;right: 2%;width: 4%;}
+.close img{width: 100%;}
+.jssorb21 div, .jssorb21 div:hover, .jssorb21 .av { background: url(../images/guide/b21.png) no-repeat;overflow: hidden;cursor: pointer;}
+.jssorb21 div { background-position: -5px -5px;}
+.jssorb21 div:hover, .jssorb21 .av:hover {background-position: -35px -5px;}
+.jssorb21 .av { background-position: -65px -5px;}
+.jssorb21 .dn, .jssorb21 .dn:hover {background-position: -95px -5px;}
