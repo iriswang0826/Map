@@ -1,0 +1,14 @@
+{
+  "name": "application-name",
+  "version": "0.0.1",
+  "private": true,
+  "scripts": {
+    "start": "node app.js",
+    "dev": "puer -a _mockserver.js"
+  },
+  "devDependencies": {},
+  "dependencies": {
+    "puer": "^1.1.1",
+    "puer-mock": "^1.1.1"
+  }
+}
